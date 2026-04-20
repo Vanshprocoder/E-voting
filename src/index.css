@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  /* Design tokens */
+  --primary: #1A56DB; /* primary color */
+  --secondary: #4B5563; /* secondary / body text */
+  --tertiary: #AD3B00; /* tertiary / accents */
+  --neutral: #F9FAFB; /* page neutral background */
+
+  /* semantic aliases used across the app */
+  --text: var(--secondary);
+  --text-h: #0f172a;
+  --bg: var(--neutral);
+  --border: #e6e9ee;
+  --code-bg: #f4f3ec;
+  --accent: var(--primary);
+  --accent-bg: rgba(26, 86, 219, 0.08);
+  --accent-border: rgba(26, 86, 219, 0.5);
+  --social-bg: rgba(249, 250, 251, 0.5);
+  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* Force light theme by default. Removed dark-mode overrides so the app
+   consistently uses the light color variables across environments. */
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  min-height: 100svh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  #root {
+    border-inline: 1px solid var(--border);
+  }
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
