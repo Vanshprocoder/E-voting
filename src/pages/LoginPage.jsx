@@ -2,11 +2,13 @@ import React, { useState } from "react"
 import { db } from "../services/firebase"
 import { collection, getDocs } from "firebase/firestore"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 export default function LoginPage() {
   const [form, setForm] = useState({ username: "", password: "" })
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const { login } = useAuth()
   const inputClassName =
     "w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100 placeholder:text-slate-400"
 
@@ -34,8 +36,8 @@ export default function LoginPage() {
         return
       }
 
-      // 🔐 Store session (basic)
-      localStorage.setItem("user", JSON.stringify(foundUser))
+      // Persist auth and notify app state
+      login(foundUser)
 
       // 🔀 Role-based redirect
       if (foundUser.role === "admin") {

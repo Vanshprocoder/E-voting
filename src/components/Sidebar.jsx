@@ -37,6 +37,7 @@
 
 import React from "react"
 import { NavLink, Link } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const linkClass = ({ isActive }) =>
   [
@@ -47,7 +48,7 @@ const linkClass = ({ isActive }) =>
   ].join(" ")
 
 const Sidebar = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
+  const { user } = useAuth()
 
   return (
     <aside className="w-full border-b border-slate-200 bg-white md:w-64 md:border-r">

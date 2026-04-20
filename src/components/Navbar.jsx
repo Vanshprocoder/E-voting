@@ -1,6 +1,7 @@
 
 import React from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
 
 const titles = {
   "/dashboard": "Dashboard",
@@ -15,11 +16,10 @@ const Navbar = () => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const label = titles[pathname] ?? "Student Union"
-
-  const user = JSON.parse(localStorage.getItem("user"))
+  const { user, logout } = useAuth()
 
   function handleLogout() {
-    localStorage.removeItem("user")
+    logout()
     navigate("/login")
   }
 
