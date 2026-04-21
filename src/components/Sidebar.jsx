@@ -120,6 +120,9 @@ const Sidebar = () => {
                 <NavLink to="/admin" className={linkClass} onClick={closeSidebar}>
                   Admin
                 </NavLink>
+                <NavLink to="/results" className={linkClass} onClick={closeSidebar}>
+                  Results
+                </NavLink>
                 <NavLink to="/users/add" className={linkClass} onClick={closeSidebar}>
                   Add User
                 </NavLink>

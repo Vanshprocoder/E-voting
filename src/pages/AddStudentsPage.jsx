@@ -18,6 +18,7 @@ export default function AddStudentsPage() {
       await addDoc(collection(db, "students"), {
         name: form.name.trim(),
         class: form.className.trim(),
+        isVoted: false,
       })
       setForm({ name: "", className: "" })
     } catch (err) {

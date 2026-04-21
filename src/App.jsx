@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage"
 import ProtectedRoute from "./components/ProtectedRoute"
 import AddStudentsPage from "./pages/AddStudentsPage"
 import AddUserPage from "./pages/AddUserPage"
+import ResultsPage from "./pages/ResultsPage"
 
 const App = () => {
   return (
@@ -88,15 +89,18 @@ const App = () => {
                 }
               />
 
+              <Route
+                path="/results"
+                element={
+                  <ProtectedRoute role="admin">
+                    <ResultsPage />
+                  </ProtectedRoute>
+                }
+              />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
-            {/* <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/vote" element={<VotingPage />} />
-              <Route path="/candidates" element={<CandidateDashboard />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes> */}
+            
           </main>
         </div>
       </div>

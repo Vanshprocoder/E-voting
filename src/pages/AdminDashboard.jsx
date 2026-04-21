@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import { useElectionData } from "../hooks/useElectionData"
+import { useNavigate } from "react-router-dom"
 
 export default function AdminDashboard() {
+  const navigate = useNavigate()
   const { students, candidates, votes, loading, error, addCandidate, usesFirebase } =
     useElectionData()
 
@@ -108,9 +110,10 @@ export default function AdminDashboard() {
 
             <button
               type="button"
+              onClick={() => navigate("/results")}
               className="w-full rounded-xl bg-blue-600 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 sm:w-auto sm:px-5"
             >
-              View results (UI)
+              View results
             </button>
           </div>
         </div>

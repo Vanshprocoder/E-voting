@@ -142,6 +142,8 @@ import {
   addDoc,
   doc,
   setDoc,
+  updateDoc,
+  getDocFromServer,
   onSnapshot,
 } from "firebase/firestore"
 
@@ -201,6 +203,16 @@ export function useElectionData() {
     }
   }, [])
 
+  useEffect(() => {
+    // Keep frontend status aligned with backend vote docs.
+    setStudents((prev) =>
+      prev.map((student) => ({
+        ...student,
+        isVoted: Boolean(votes[student.id]),
+      })),
+    )
+  }, [votes])
+
   // 🔹 Add candidate
   async function addCandidate(data) {
     try {
@@ -213,9 +225,22 @@ export function useElectionData() {
   // 🔹 Submit vote
   async function submitVote(studentId, voteData) {
     try {
-      await setDoc(doc(db, "votes", studentId), voteData)
+      const voteRef = doc(db, "votes", studentId)
+      const existingVote = await getDocFromServer(voteRef)
+      if (existingVote.exists()) {
+        throw new Error("This student has already voted")
+      }
+
+      await setDoc(voteRef, voteData)
+
+      // Persist status on student record as well.
+      try {
+        await updateDoc(doc(db, "students", studentId), { isVoted: true })
+      } catch {
+        // Ignore if student status update fails; vote itself is already stored.
+      }
     } catch (err) {
-      throw new Error("Failed to submit vote")
+      throw new Error(err?.message || "Failed to submit vote")
     }
   }
 

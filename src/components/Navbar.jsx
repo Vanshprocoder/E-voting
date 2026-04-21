@@ -8,6 +8,7 @@ const titles = {
   "/voting": "Vote",
   "/candidates": "Candidates",
   "/admin": "Admin",
+  "/results": "Results",
   "/students/add": "Add Students",
   "/users/add": "Add User",
 }
