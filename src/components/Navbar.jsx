@@ -24,8 +24,8 @@ const Navbar = () => {
   }
 
   return (
-    <header className="sticky top-0 z-10 flex min-h-[56px] items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 shadow-sm backdrop-blur-sm">
-      <Link to="/dashboard" className="font-semibold tracking-tight text-slate-900">
+    <header className="sticky top-0 z-10 flex min-h-[56px] items-center justify-between border-b border-slate-200 bg-white/95 py-3 pl-14 pr-4 shadow-sm backdrop-blur-sm md:px-4">
+      <Link to="/dashboard" className="truncate font-semibold tracking-tight text-slate-900">
        School Leadership Election 2026
       </Link>
 
